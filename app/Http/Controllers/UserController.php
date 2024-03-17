@@ -10,40 +10,25 @@ class UserController extends Controller
 {
     public function index()
     {
-        // tambah data user dengan Eloquent Model
-        // $data = [
-        //     'username' => 'customer-1',
-        //     'nama' => 'Pelanggan',
-        //     'password' => Hash::make('12345'),
-        //     'level_id' => 4
-        // ];
-        // UserModel::insert($data); // tambahkan data ke tabel m_user
-
-        // $data = [
-        //     'nama' => 'Pelanggan Pertama',
-        // ];
-        // UserModel::where('username', 'customer-1')->update($data); // update data user
-
-        // $data = [
-        //     'level_id' => 2,
-        //     'username' => 'manager_tiga',
-        //     'nama' => 'Manager 3',
-        //     'password' => Hash::make('12345')
-        // ];
-        // UserModel::create($data);
-
-        // coba akses model UserModel
-        // $user = UserModel::all(); // ambil semua data dari tabel m_user
-        $user = UserModel::firstOrNew(
+        $user = UserModel::create(
             [
-                'username' => 'manager33',
-                'nama' => 'Manager Tiga Tiga',
+                'username' => 'manager11',
+                'nama' => 'Manager11',
                 'password' => Hash::make('12345'),
                 'level_id' => 2
             ],
         );
+
+        $user->username = 'manager12';
+
         $user->save();
-        
-        return view('user', ['data' => $user]);
+
+        $user->wasChanged(); // true
+        $user->wasChanged('username'); // true
+        $user->wasChanged(['username', 'level_id']); // true
+        $user->wasChanged('nama'); // false
+        dd($user->wasChanged(['nama', 'username'])); // true
+
+        // return view('user', ['data' => $user]);
     }
 }
