@@ -16,6 +16,11 @@ class UserController extends Controller
         dd($user);
     }
 
+    public function create()
+    {
+        return view('user.create');
+    }
+
     public function tambah()
     {
         return view('user_tambah');

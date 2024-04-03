@@ -6,7 +6,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome1');
 });
 
 Route::get('/level', [LevelController::class, 'index']);
@@ -27,3 +27,6 @@ Route::post('/kategori', [KategoriController::class, 'store'])->name('kategori.s
 Route::get('/kategori/edit/{id}', [KategoriController::class, 'edit'])->name('kategori.edit');
 Route::put('/kategori/update/{id}', [KategoriController::class, 'update'])->name('kategori.update');
 Route::get('/kategori/delete/{id}', [KategoriController::class, 'delete'])->name('kategori.delete');
+
+Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
+Route::get('/level/create', [LevelController::class, 'create'])->name('level.create');
