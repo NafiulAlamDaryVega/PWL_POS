@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\UserModel;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\RedirectController;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\View\View;
+use App\Models\UserModel;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -21,6 +25,16 @@ class UserController extends Controller
         return view('user.create');
     }
 
+    public function store(Request $request): RedirectResponse
+    {
+        $validated = $request->validated();
+
+        $validated = $request->safe()->only(['level_id', 'username', 'nama', 'password']);
+        $validated = $request->safe()->except(['level_id', 'username', 'nama', 'password']);
+
+        return redirect('/user');
+    }
+
     public function tambah()
     {
         return view('user_tambah');
@@ -34,6 +48,8 @@ class UserController extends Controller
             'password' => Hash::make('$request->password'),
             'level_id' => $request->level_id
         ]);
+
+
 
         return redirect('/user');
     }
