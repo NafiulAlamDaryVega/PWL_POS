@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LevelController;
+use App\Http\Controllers\POSController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,3 +32,4 @@ Route::get('/kategori/delete/{id}', [KategoriController::class, 'delete'])->name
 Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
 Route::get('/level/create', [LevelController::class, 'create'])->name('level.create');
 
+Route::resource('m_user', POSController::class);
