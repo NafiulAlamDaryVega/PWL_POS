@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Yajra\DataTables\Html\Builder;
+use Illuminate\Support\Facades\Validator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -20,6 +21,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Builder::useVite();
+        Validator::extend('datetime_local', function ($attribute, $value, $parameters, $validator) {
+            // Lakukan validasi disini
+            // Misalnya, Anda dapat menggunakan fungsi strtotime() untuk memeriksa apakah nilai dapat diubah menjadi timestamp
+            return strtotime($value) !== false;
+        });
     }
 }

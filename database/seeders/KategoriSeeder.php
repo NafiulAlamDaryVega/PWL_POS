@@ -23,18 +23,23 @@ class KategoriSeeder extends Seeder
             ],
             [
                 'kategori_id' => 3,
-                'kategori_kode' => 'OTO',
-                'kategori_nama' => 'Otomotif',
+                'kategori_kode' => 'ART',
+                'kategori_nama' => 'Alat Rumah Tangga',
             ],
             [
                 'kategori_id' => 4,
-                'kategori_kode' => 'RMH',
-                'kategori_nama' => 'Perlengkapan Rumah',
+                'kategori_kode' => 'MKN',
+                'kategori_nama' => 'Makanan',
             ],
             [
                 'kategori_id' => 5,
-                'kategori_kode' => 'MKN',
-                'kategori_nama' => 'Makanan dan Minuman',
+                'kategori_kode' => 'MNM',
+                'kategori_nama' => 'Minuman',
+            ],
+            [
+                'kategori_id' => 6,
+                'kategori_kode' => 'OTO',
+                'kategori_nama' => 'Otomotif',
             ],
         ];
         DB::table('m_kategori')->insert($data);
