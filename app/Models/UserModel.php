@@ -9,8 +9,9 @@ use App\Models\LevelModel; // Add this import statement
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class UserModel extends Authenticatable
+class UserModel extends Authenticatable implements JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -18,6 +19,16 @@ class UserModel extends Authenticatable
     protected $primaryKey = 'user_id';  // Mendefinisikan primary key dari tabel yang digunakan
 
     protected $fillable = ['level_id', 'username', 'nama', 'password'];
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
 
     public function level(): BelongsTo
     {
